@@ -1,0 +1,40 @@
+{
+    "T1-g1_naucdx": {
+        "name": "Tiền Đông Dương",
+        "images": [
+            {
+                "url": "https://res.cloudinary.com/ddknyhb2g/image/upload/v1775273503/T1-g1_naucdx.jpg",
+                "caption": "Tiền Đông Dương",
+                "description": "Tiền Đông Dương (piastre) là đơn vị tiền tệ do Ngân hàng Đông Dương phát hành thời Pháp thuộc (1885-1954), gồm cả tiền xu và tiền giấy. Được chia làm 100 cent, đồng bạc này ban đầu tương đương peso Mexico, sau đó neo theo Franc Pháp, được sử dụng để kiểm soát tài chính và khai thác thuộc địa"
+            }
+        ],
+        "period": "Thời kỳ Pháp thuộc"
+    },
+    "t1-g3_whvtab": {
+        "name": "Tiền Đông Dương",
+        "images": [
+            {
+                "url": "https://res.cloudinary.com/ddknyhb2g/image/upload/v1775273503/T1-g1_naucdx.jpg",
+                "caption": "Tiền Đông Dương",
+                "description": "Tiền Đông Dương (piastre) là đơn vị tiền tệ do Ngân hàng Đông Dương phát hành thời Pháp thuộc (1885-1954), gồm cả tiền xu và tiền giấy. Được chia làm 100 cent, đồng bạc này ban đầu tương đương peso Mexico, sau đó neo theo Franc Pháp, được sử dụng để kiểm soát tài chính và khai thác thuộc địa"
+            },
+            {
+                "url": "https://res.cloudinary.com/ddknyhb2g/image/upload/v1775273525/t1-g3_whvtab.jpg",
+                "caption": "Tiền Tài Chính",
+                "description": "Tiền tài chính là ....."
+            }
+        ],
+        "period": "Thời kỳ Pháp thuộc"
+    },
+    "t1-g7_c7cvg2": {
+        "name": "Bức Phù Điêu",
+        "images": [
+            {
+                "url": "https://res.cloudinary.com/ddknyhb2g/image/upload/v1775829435/t1-g7_c7cvg2.jpg",
+                "caption": "Bức Phù Điều",
+                "description": "Mô tả về bức phù điêu"
+            }
+        ],
+        "period": "............"
+    }
+}

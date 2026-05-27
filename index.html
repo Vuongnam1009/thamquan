@@ -1,0 +1,527 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tham Quan Ảo — Hệ Thống Kho Xăng Dầu Quân Sự KHO 190</title>
+    <meta name="description" content="Khám phá hệ thống kho xăng dầu quân sự lịch sử qua công nghệ tour ảo 360 độ. Phân kho K91, K93, K95 thuộc Kho 190.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;600;700&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
+    <style>
+        *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+        :root {
+            --army-green: #2d4a2d;
+            --army-dark:  #1a2e1a;
+            --gold:       #c9a84c;
+            --gold-light: #e8c96a;
+            --rust:       #8b3a1a;
+            --cream:      #f0e8d5;
+            --text-muted: rgba(240,232,213,0.75);
+        }
+
+        html, body {
+            width: 100%; height: 100%;
+            overflow: hidden;
+            font-family: 'Open Sans', sans-serif;
+            background: var(--army-dark);
+            color: var(--cream);
+        }
+
+        /* ===== LAYOUT: Toàn trang chia 2 cột ===== */
+        .page {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            overflow: hidden;
+        }
+
+        /* ===== CỘT TRÁI — Thông tin & Stats ===== */
+        .left-panel {
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            padding: 40px 36px;
+            background: rgba(26, 46, 26, 0.9);
+            border-right: 1px solid rgba(201,168,76,0.3);
+            z-index: 2;
+            overflow: hidden;
+        }
+
+        .left-content { position: relative; z-index: 1; }
+
+        .emblem {
+            width: 64px; height: 64px;
+            border: 2px solid var(--gold);
+            border-radius: 50%;
+            display: flex; align-items: center; justify-content: center;
+            font-size: 1.8rem;
+            background: rgba(26,46,26,0.7);
+            margin-bottom: 20px;
+            animation: glow 3s ease infinite;
+        }
+        @keyframes glow {
+            0%,100% { box-shadow: 0 0 15px rgba(201,168,76,0.3); }
+            50%      { box-shadow: 0 0 35px rgba(201,168,76,0.6); }
+        }
+
+        .top-label {
+            font-family: 'Oswald', sans-serif;
+            font-size: 0.65rem; letter-spacing: 5px;
+            text-transform: uppercase; color: var(--gold);
+            margin-bottom: 10px;
+        }
+
+        .main-title {
+            font-family: 'Oswald', sans-serif;
+            font-size: 1.9rem; font-weight: 700;
+            text-transform: uppercase; line-height: 1.15;
+            color: #fff; margin-bottom: 6px;
+        }
+        .main-title span { color: var(--gold); display: block; }
+
+        .sub-title {
+            font-family: 'Oswald', sans-serif;
+            font-size: 0.72rem; letter-spacing: 4px;
+            color: var(--text-muted); margin-bottom: 22px;
+        }
+
+        .divider {
+            width: 50px; height: 1px;
+            background: linear-gradient(to right, var(--gold), transparent);
+            margin-bottom: 18px;
+        }
+
+        .left-desc {
+            font-size: 0.82rem; line-height: 1.7;
+            color: var(--text-muted); margin-bottom: 28px;
+        }
+
+        /* Stats nhỏ */
+        .stats-row {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 10px; margin-bottom: 28px;
+        }
+        .stat-box {
+            background: rgba(45,74,45,0.5);
+            border: 1px solid rgba(201,168,76,0.2);
+            border-radius: 4px; padding: 10px 12px;
+            text-align: center;
+        }
+        .stat-num {
+            font-family: 'Oswald', sans-serif;
+            font-size: 1.4rem; font-weight: 700;
+            color: var(--gold); display: block;
+        }
+        .stat-lbl {
+            font-size: 0.62rem; letter-spacing: 1.5px;
+            text-transform: uppercase; color: var(--text-muted);
+        }
+
+        /* Info panel — hiện khi hover/click pin */
+        .info-panel {
+            background: rgba(45,74,45,0.5);
+            border: 1px solid rgba(201,168,76,0.25);
+            border-radius: 4px;
+            padding: 14px 16px;
+            min-height: 80px;
+            display: flex; flex-direction: column; gap: 4px;
+            transition: all 0.3s ease;
+        }
+        .info-placeholder {
+            font-family: 'Oswald', sans-serif;
+            font-size: 0.68rem; letter-spacing: 2px;
+            color: rgba(201,168,76,0.35);
+            text-transform: uppercase;
+            text-align: center;
+            margin: auto 0;
+        }
+        .info-id {
+            font-family: 'Oswald', sans-serif;
+            font-size: 1rem; color: var(--gold); letter-spacing: 2px;
+        }
+        .info-badge {
+            display: inline-block; margin-left: 6px;
+            font-size: 0.6rem; letter-spacing: 1px;
+            background: rgba(201,168,76,0.15);
+            border: 1px solid rgba(201,168,76,0.3);
+            color: var(--gold); padding: 1px 6px; border-radius: 2px;
+            vertical-align: middle;
+        }
+        .info-name { font-size: 0.72rem; letter-spacing: 1px; color: var(--text-muted); }
+        .info-desc { font-size: 0.78rem; line-height: 1.55; color: var(--text-muted); margin-top: 4px; }
+        .info-btn {
+            display: inline-block; margin-top: 10px; align-self: flex-start;
+            font-family: 'Oswald', sans-serif;
+            font-size: 0.72rem; letter-spacing: 2px;
+            text-transform: uppercase;
+            background: var(--gold); color: var(--army-dark);
+            border: none; padding: 7px 16px; border-radius: 3px;
+            cursor: pointer; text-decoration: none;
+            transition: background 0.2s;
+        }
+        .info-btn:hover { background: var(--gold-light); }
+        .info-btn.disabled { background: #3a3a3a; color: #666; cursor: default; }
+
+        /* Music + footer label */
+        .left-footer {
+            position: absolute; bottom: 20px; left: 36px; right: 36px;
+            display: flex; align-items: center; justify-content: space-between;
+            z-index: 1;
+        }
+        .copy-text {
+            font-size: 0.6rem; letter-spacing: 1px;
+            color: rgba(201,168,76,0.35);
+        }
+        .music-btn {
+            width: 34px; height: 34px; border-radius: 50%;
+            background: rgba(45,74,45,0.7);
+            border: 1px solid rgba(201,168,76,0.4);
+            color: var(--gold); font-size: 0.9rem; cursor: pointer;
+            display: flex; align-items: center; justify-content: center;
+            transition: all 0.2s;
+        }
+        .music-btn:hover { background: var(--gold); color: var(--army-dark); }
+
+        /* ===== CỘT PHẢI — Bản đồ ===== */
+        .map-panel {
+            position: relative;
+            overflow: hidden;
+            background: #0e1e0e;
+            perspective: 1200px; /* enable 3D perspective */
+            }
+    .map-panel::after {
+        content: '';
+        position: absolute;
+        inset: 0;
+        background: rgba(255,255,255,0.1);
+        mix-blend-mode: screen;
+        pointer-events: none;
+    }
+
+        #map-canvas {
+            width: 100%;
+            height: 100%;
+            display: block;
+        }
+
+        /* Overlay gradient trái */
+        .map-panel::before {
+            content: '';
+            position: absolute; inset: 0;
+            background: linear-gradient(to right, rgba(26,46,26,0.6) 0%, transparent 25%);
+            z-index: 1; pointer-events: none;
+        }
+
+        /* Tiêu đề bản đồ */
+        .map-topbar {
+            position: absolute; top: 0; left: 0; right: 0;
+            padding: 10px 18px;
+            background: linear-gradient(to bottom, rgba(26,46,26,0.9), transparent);
+            display: flex; align-items: center; gap: 8px;
+            z-index: 5;
+        }
+        .map-blink {
+            width: 7px; height: 7px; border-radius: 50%;
+            background: #4caf50; animation: blink 1.5s ease infinite;
+        }
+        @keyframes blink {
+            0%,100% { opacity: 1; } 50% { opacity: 0.15; }
+        }
+        .map-topbar-text {
+            font-family: 'Oswald', sans-serif;
+            font-size: 0.68rem; letter-spacing: 4px;
+            text-transform: uppercase; color: var(--gold);
+        }
+
+        /* Routes SVG */
+        .map-routes {
+            position: absolute; inset: 0;
+            width: 100%; height: 100%;
+            pointer-events: none; z-index: 3;
+        }
+
+        /* ===== PINS ===== */
+        .map-pin {
+            position: absolute; z-index: 10;
+            cursor: pointer;
+            transform: translate(-50%, -100%);
+            transition: transform 0.2s ease;
+        }
+        .map-pin:hover { transform: translate(-50%, -100%) scale(1.15); }
+
+        /* Avatar ảnh kho */
+        .pin-avatar {
+            width: 54px; height: 54px;
+            border-radius: 50%;
+            border: 3px solid var(--gold);
+            object-fit: cover;
+            display: block;
+            margin: 0 auto;
+            box-shadow: 0 0 0 4px rgba(201,168,76,0.3), 0 4px 14px rgba(0,0,0,0.7);
+            animation: pinPulse 2.2s ease infinite;
+            transition: transform 0.2s ease;
+        }
+        .map-pin:hover .pin-avatar {
+            transform: scale(1.1);
+        }
+        .map-pin.coming-soon .pin-avatar {
+            filter: grayscale(1) brightness(0.55);
+            border-color: #666;
+            box-shadow: 0 0 0 3px rgba(100,100,100,0.2), 0 4px 10px rgba(0,0,0,0.6);
+            animation: none;
+        }
+        @keyframes pinPulse {
+            0%,100% { box-shadow: 0 0 0 4px rgba(201,168,76,0.3), 0 4px 14px rgba(0,0,0,0.7); }
+            50%      { box-shadow: 0 0 0 10px rgba(201,168,76,0.12), 0 4px 16px rgba(0,0,0,0.7); }
+        }
+        .pin-tail {
+            width: 2px; height: 10px;
+            background: var(--gold); margin: 0 auto;
+        }
+        .map-pin.coming-soon .pin-tail { background: #666; }
+
+        /* Label badge trên pin */
+        .pin-badge {
+            position: absolute;
+            bottom: calc(100% + 4px); left: 50%;
+            transform: translateX(-50%);
+            font-family: 'Oswald', sans-serif;
+            font-size: 0.7rem; letter-spacing: 2px;
+            background: rgba(26,46,26,0.92);
+            border: 1px solid var(--gold);
+            color: var(--gold);
+            padding: 3px 10px; border-radius: 3px;
+            white-space: nowrap;
+        }
+        .map-pin.coming-soon .pin-badge {
+            border-color: #555; color: #777;
+        }
+
+        /* Compass */
+        .map-compass {
+            position: absolute; bottom: 18px; right: 20px;
+            width: 44px; height: 44px; z-index: 5; opacity: 0.65;
+        }
+
+        /* Scalebar */
+        .map-scalebar {
+            position: absolute; bottom: 20px; right: 74px;
+            z-index: 5; display: flex; flex-direction: column; gap: 2px;
+        }
+        .scalebar-line {
+            width: 70px; height: 3px;
+            background: linear-gradient(to right, var(--gold) 50%, transparent 50%);
+            border: 1px solid rgba(201,168,76,0.6);
+        }
+        .scalebar-txt {
+            font-size: 0.58rem; letter-spacing: 1px;
+            color: rgba(201,168,76,0.65); font-family: 'Oswald', sans-serif;
+        }
+
+        /* ===== RESPONSIVE ===== */
+        @media (max-width: 768px) {
+            .page {
+                grid-template-columns: 1fr;
+                grid-template-rows: auto 1fr;
+                overflow: auto;
+            }
+            html, body { overflow: auto; }
+            .left-panel { padding: 28px 20px 80px; }
+            .map-panel { height: 55vw; min-height: 260px; }
+            .map-panel::before { display: none; }
+        }
+    </style>
+</head>
+<body>
+
+<audio id="bg-music" src="audio/background_music.mp3" loop></audio>
+
+<div class="page">
+
+    <!-- ===== CỘT TRÁI ===== -->
+    <aside class="left-panel">
+        <div class="left-content">
+            <div class="emblem">⛽</div>
+            <h1 class="main-title">
+                HỆ THỐNG KHO
+                <span>XĂNG DẦU QUÂN SỰ</span>
+            </h1>
+            <p class="sub-title">KHO 190 — THAM QUAN ẢO 360°</p>
+            <div class="divider"></div>
+            <p class="left-desc">
+                Khám phá hệ thống kho xăng dầu chiến lược qua công nghệ
+                tour ảo 360° hiện đại. Click vào điểm đánh dấu trên bản đồ
+                để bắt đầu hành trình.
+            </p>
+
+            <!-- Stats -->
+            <div class="stats-row">
+                <div class="stat-box">
+                    <span class="stat-num">3</span>
+                    <span class="stat-lbl">Phân Kho</span>
+                </div>
+                <div class="stat-box">
+                    <span class="stat-num">360°</span>
+                    <span class="stat-lbl">Công Nghệ</span>
+                </div>
+                <div class="stat-box">
+                    <span class="stat-num">10+</span>
+                    <span class="stat-lbl">Không Gian</span>
+                </div>
+                <div class="stat-box">
+                    <span class="stat-num">50+</span>
+                    <span class="stat-lbl">Hiện Vật</span>
+                </div>
+            </div>
+
+            <!-- Info panel -->
+            <div class="info-panel" id="info-panel">
+                <span class="info-placeholder">← Click vào điểm trên bản đồ</span>
+            </div>
+        </div>
+
+        <div class="left-footer">
+            <span class="copy-text">KHO 190 · DỰ ÁN KHOA HỌC KỸ THUẬT</span>
+            <button class="music-btn" id="music-btn" title="Nhạc nền">🎵</button>
+        </div>
+    </aside>
+
+    <!-- ===== CỘT PHẢI — Bản đồ ===== -->
+    <section class="map-panel" id="map-panel">
+
+        <div class="map-topbar">
+            <div class="map-blink"></div>
+            <span class="map-topbar-text">KHO 190 · SƠ ĐỒ KHU VỰC · LIVE</span>
+        </div>
+
+                        <img src="images/military_map_3d.png" alt="Bản đồ 3D" class="map-img">
+
+        <!-- Routes SVG -->
+        <svg class="map-routes" viewBox="0 0 100 100" preserveAspectRatio="none">
+            <defs>
+                <marker id="arr" markerWidth="5" markerHeight="3.5" refX="5" refY="1.75" orient="auto">
+                    <polygon points="0 0, 5 1.75, 0 3.5" fill="rgba(201,168,76,0.45)"/>
+                </marker>
+            </defs>
+            <path d="M 28,66 Q 38,46 50,38"
+                  stroke="rgba(201,168,76,0.3)" stroke-width="0.5"
+                  stroke-dasharray="2.5 2" fill="none" marker-end="url(#arr)"/>
+            <path d="M 54,34 Q 63,44 70,60"
+                  stroke="rgba(201,168,76,0.3)" stroke-width="0.5"
+                  stroke-dasharray="2.5 2" fill="none" marker-end="url(#arr)"/>
+        </svg>
+
+        <!-- PIN K91 -->
+        <div class="map-pin" id="pin-k91" style="left:28%; top:67%;"
+             data-id="k91" data-name="PHÂN KHO K91" data-badge="8 phòng"
+             data-desc="Phân kho chứa nhiên liệu chiến lược, gồm Khu A và Khu B với đầy đủ hiện vật lịch sử."
+             data-url="welcome.html?m=k91" data-icon="🏭">
+            <div class="pin-badge">K91</div>
+            <img class="pin-avatar" src="images/k91_thumbnail.jpg" alt="K91">
+            <div class="pin-tail"></div>
+        </div>
+
+        <!-- PIN K93 -->
+        <div class="map-pin coming-soon" id="pin-k93" style="left:52%; top:37%;"
+             data-id="k93" data-name="PHÂN KHO K93" data-badge="Sắp ra mắt"
+             data-desc="Khu phân kho đặc biệt đang trong giai đoạn chuẩn bị nội dung tham quan 360°."
+             data-url="" data-icon="🏗️">
+            <div class="pin-badge">K93</div>
+            <img class="pin-avatar" src="images/k93_thumbnail.jpg" alt="K93">
+            <div class="pin-tail"></div>
+        </div>
+
+        <!-- PIN K95 -->
+        <div class="map-pin" id="pin-k95" style="left:71%; top:66%;"
+             data-id="k95" data-name="PHÂN KHO K95" data-badge="Toàn cảnh"
+             data-desc="Hệ thống hầm ngầm bí mật phục vụ dự trữ và phân phối xăng dầu chiến lược."
+             data-url="welcome.html?m=k95" data-icon="⛽">
+            <div class="pin-badge">K95</div>
+            <img class="pin-avatar" src="images/k95_thumbnail.jpg" alt="K95">
+            <div class="pin-tail"></div>
+        </div>
+
+        <!-- Compass -->
+        <div class="map-compass">
+            <svg viewBox="0 0 50 50" xmlns="http://www.w3.org/2000/svg">
+                <circle cx="25" cy="25" r="23" stroke="rgba(201,168,76,0.5)" stroke-width="1.5" fill="rgba(26,46,26,0.6)"/>
+                <polygon points="25,6 28,22 25,25 22,22" fill="#c9a84c"/>
+                <polygon points="25,44 28,28 25,25 22,28" fill="#555"/>
+                <circle cx="25" cy="25" r="2" fill="#c9a84c"/>
+                <text x="25" y="13" text-anchor="middle" fill="#c9a84c" font-size="7" font-family="Oswald">N</text>
+            </svg>
+        </div>
+
+        <!-- Scalebar -->
+        <div class="map-scalebar">
+            <div class="scalebar-line"></div>
+            <span class="scalebar-txt">≈ 500m</span>
+        </div>
+    </section>
+</div>
+
+<script>
+// ===== INTERACTIVE MAP =====
+const infoPanel = document.getElementById('info-panel');
+
+document.querySelectorAll('.map-pin').forEach(pin => {
+    const isComingSoon = pin.classList.contains('coming-soon');
+
+    pin.addEventListener('mouseenter', () => updateInfo(pin));
+    pin.addEventListener('click', () => {
+        if (!isComingSoon && pin.dataset.url) {
+            window.location.href = pin.dataset.url;
+        }
+    });
+});
+
+// Reset khi click ra ngoài
+document.getElementById('map-panel').addEventListener('click', e => {
+    if (!e.target.closest('.map-pin')) {
+        infoPanel.innerHTML = '<span class="info-placeholder">← Click vào điểm trên bản đồ</span>';
+    }
+});
+
+function updateInfo(pin) {
+    const isComingSoon = pin.classList.contains('coming-soon');
+    const btnHtml = isComingSoon
+        ? `<span class="info-btn disabled">Đang chuẩn bị</span>`
+        : `<a href="${pin.dataset.url}" class="info-btn">Vào Tham Quan →</a>`;
+
+    infoPanel.innerHTML = `
+        <div class="info-id">
+            ${pin.dataset.id.toUpperCase()}
+            <span class="info-badge">${pin.dataset.badge}</span>
+        </div>
+        <div class="info-name">${pin.dataset.name}</div>
+        <div class="info-desc">${pin.dataset.desc}</div>
+        ${btnHtml}
+    `;
+}
+
+// ===== NHẠC NỀN =====
+const music = document.getElementById('bg-music');
+const musicBtn = document.getElementById('music-btn');
+music.volume = 0.3;
+let playing = false;
+
+musicBtn.addEventListener('click', () => {
+    playing ? (music.pause(), musicBtn.textContent = '🔇') : (music.play(), musicBtn.textContent = '🎵');
+    playing = !playing;
+    sessionStorage.setItem('bgMusicPlaying', playing ? '1' : '0');
+});
+
+if (sessionStorage.getItem('bgMusicPlaying') === '1') {
+    music.play().then(() => { playing = true; }).catch(() => {});
+}
+</script>
+    
+    
+</body>
+</html>

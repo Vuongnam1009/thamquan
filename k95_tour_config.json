@@ -1,0 +1,19 @@
+{
+    "_ghi_chu_1": "Config tour cho địa điểm K95",
+    "default": {
+        "firstScene": "k95_toancanh",
+        "author": "Bảo Tàng 360",
+        "sceneFadeDuration": 1000,
+        "autoLoad": true,
+        "hotSpotDebug": false,
+        "hfov": 120
+    },
+    "_ghi_chu_2": "Danh sách các phòng (Scenes) của K95",
+    "scenes": {
+        "k95_toancanh": {
+            "title": "Toàn Cảnh Kho K95",
+            "panorama": "images/panorama/k95/toancanh.jpg",
+            "hotSpots": []
+        }
+    }
+}

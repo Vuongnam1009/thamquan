@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chào mừng đến với Phân Kho — KHO 190</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;600;700&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
+    
+    <!-- Link CSS gốc cho các style modal/tour nếu cần, nhưng trang này sẽ dùng CSS nhúng -->
+    <link rel="stylesheet" href="style.css">
+
+    <style>
+        *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+        :root {
+            --army-green:  #2d4a2d;
+            --army-dark:   #1a2e1a;
+            --gold:        #c9a84c;
+            --gold-light:  #e8c96a;
+            --cream:       #f0e8d5;
+            --text-muted:  rgba(240,232,213,0.85);
+        }
+
+        html, body {
+            width: 100%; height: 100%;
+            font-family: 'Open Sans', sans-serif;
+            background: var(--army-dark);
+            color: var(--cream);
+            overflow: hidden;
+        }
+
+        /* NỀN ĐỘNG THEO KHO */
+        .welcome-bg {
+            position: absolute;
+            inset: 0;
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            filter: brightness(0.4) saturate(0.8);
+            z-index: 0;
+            transition: background-image 0.5s ease;
+            animation: slowZoom 20s ease-in-out infinite alternate;
+        }
+        @keyframes slowZoom {
+            from { transform: scale(1.02); }
+            to   { transform: scale(1.1); }
+        }
+
+        /* Lớp overlay mờ */
+        .overlay {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(to right, rgba(26,46,26,0.95) 0%, rgba(26,46,26,0.7) 40%, rgba(26,46,26,0.2) 100%);
+            z-index: 1;
+        }
+
+        /* NỘI DUNG CHÍNH */
+        .welcome-content {
+            position: relative;
+            z-index: 2;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            height: 100%;
+            max-width: 700px;
+            padding: 0 60px;
+            animation: fadeUp 1s ease both;
+        }
+        @keyframes fadeUp {
+            from { opacity: 0; transform: translateY(30px); }
+            to   { opacity: 1; transform: translateY(0); }
+        }
+
+        .welcome-emblem {
+            width: 60px; height: 60px;
+            border: 2px solid var(--gold);
+            border-radius: 50%;
+            display: flex; align-items: center; justify-content: center;
+            font-size: 1.5rem;
+            background: rgba(26,46,26,0.7);
+            margin-bottom: 24px;
+            box-shadow: 0 0 20px rgba(201,168,76,0.2);
+        }
+
+        .welcome-subtitle {
+            font-family: 'Oswald', sans-serif;
+            font-size: 0.8rem; letter-spacing: 5px;
+            text-transform: uppercase; color: var(--gold);
+            margin-bottom: 12px;
+        }
+
+        .welcome-title {
+            font-family: 'Oswald', sans-serif;
+            font-size: clamp(2.5rem, 5vw, 4rem);
+            font-weight: 700; line-height: 1.1;
+            text-transform: uppercase; color: #fff;
+            margin-bottom: 24px;
+            text-shadow: 0 2px 10px rgba(0,0,0,0.8);
+        }
+
+        .welcome-divider {
+            width: 60px; height: 2px;
+            background: var(--gold);
+            margin-bottom: 24px;
+        }
+
+        .welcome-desc {
+            font-size: 1.05rem; line-height: 1.7;
+            color: var(--text-muted);
+            margin-bottom: 40px;
+            text-shadow: 0 1px 4px rgba(0,0,0,0.8);
+        }
+
+        .welcome-actions {
+            display: flex; gap: 20px; align-items: center;
+        }
+
+        .btn-enter {
+            display: inline-block;
+            font-family: 'Oswald', sans-serif;
+            font-size: 1.1rem; letter-spacing: 3px;
+            text-transform: uppercase; text-decoration: none;
+            background: var(--gold); color: var(--army-dark);
+            padding: 16px 40px; border-radius: 4px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.4);
+        }
+        .btn-enter:hover {
+            background: var(--gold-light);
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(201,168,76,0.4);
+        }
+
+        .btn-back {
+            display: inline-block;
+            font-family: 'Oswald', sans-serif;
+            font-size: 0.9rem; letter-spacing: 2px;
+            text-transform: uppercase; text-decoration: none;
+            color: var(--gold);
+            padding: 14px 24px; border: 1px solid var(--gold);
+            border-radius: 4px;
+            transition: all 0.3s ease;
+            background: rgba(26,46,26,0.6);
+        }
+        .btn-back:hover {
+            background: var(--gold); color: var(--army-dark);
+        }
+
+        /* NAVBAR TRÊN CÙNG (Dành cho Nhạc & Hướng dẫn) */
+        .top-nav {
+            position: absolute; top: 30px; right: 40px;
+            z-index: 10; display: flex; gap: 16px;
+        }
+        .nav-btn {
+            font-family: 'Oswald', sans-serif;
+            font-size: 0.8rem; letter-spacing: 2px;
+            text-transform: uppercase;
+            background: rgba(45,74,45,0.8);
+            border: 1px solid rgba(201,168,76,0.4);
+            color: var(--gold);
+            padding: 8px 16px; border-radius: 3px;
+            cursor: pointer; transition: all 0.2s;
+        }
+        .nav-btn:hover {
+            background: var(--gold); color: var(--army-dark);
+        }
+
+        /* HƯỚNG DẪN VIÊN ẢO */
+        .guide-container {
+            position: fixed; bottom: 40px; right: 60px;
+            z-index: 10;
+            display: flex; flex-direction: column; align-items: center; gap: 10px;
+            animation: fadeIn 0.5s ease;
+        }
+        .guide-container.hidden { display: none; }
+        .guide-container img {
+            width: 220px; height: 220px;
+            border-radius: 50%;
+            border: 4px solid var(--gold);
+            background: rgba(255, 255, 255, 0.85); /* Nền sáng để nổi bật */
+            box-shadow: 0 10px 40px rgba(0,0,0,0.8), 0 0 30px rgba(201,168,76,0.5);
+            object-fit: cover;
+        }
+
+        @media (max-width: 768px) {
+            .welcome-content { padding: 0 30px; }
+            .welcome-actions { flex-direction: column; align-items: flex-start; }
+            .top-nav { top: 20px; right: 20px; }
+            .guide-container { bottom: 20px; right: 20px; }
+            .guide-container img { width: 140px; height: 140px; }
+        }
+    </style>
+</head>
+<body>
+    
+    <!-- NỀN ĐỘNG -->
+    <div id="welcome-bg" class="welcome-bg"></div>
+    <div class="overlay"></div>
+
+    <!-- TOP NAV -->
+    <div class="top-nav">
+        <button id="music-btn" class="nav-btn">🎵 Nhạc nền: TẮT</button>
+        <button id="toggle-guide-btn" class="nav-btn">Tắt Hướng Dẫn</button>
+    </div>
+
+    <!-- NHẠC NỀN -->
+    <audio id="bg-music" src="audio/background_music.mp3" loop></audio>
+
+    <!-- NỘI DUNG CHÀO MỪNG -->
+    <div class="welcome-content">
+        <div class="welcome-emblem">🎖️</div>
+        <p class="welcome-subtitle">Hệ Thống Kho Xăng Dầu Quân Sự</p>
+        <h1 id="welcome-title" class="welcome-title">PHÂN KHO K91</h1>
+        <div class="welcome-divider"></div>
+        <p id="welcome-desc" class="welcome-desc">
+            Đang tải thông tin chi tiết về phân kho...
+        </p>
+        <div class="welcome-actions">
+            <a id="welcome-enter-btn" href="#" class="btn-enter">Tiến Vào Tham Quan</a>
+            <a href="index.html" class="btn-back">← Quay Lại Bản Đồ</a>
+        </div>
+    </div>
+
+    <!-- HƯỚNG DẪN VIÊN ẢO -->
+    <div id="guide-container" class="guide-container">
+        <img id="guide-gif" src="images/guide.gif" alt="Hướng dẫn viên ảo">
+        <audio id="guide-audio" src="audio/welcome.mp3"></audio>
+    </div>
+
+    <!-- JAVASCRIPT -->
+    <script src="script_welcome.js"></script>
+    <script src="main.js"></script>
+</body>
+</html>

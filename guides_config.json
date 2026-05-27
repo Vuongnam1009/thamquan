@@ -1,0 +1,34 @@
+{
+    "k91": {
+        "welcome": {
+            "audio": "audio/welcome.mp3",
+            "image": "images/guide.gif"
+        },
+        "scenes": {
+            "k91_khoB1": {
+                "audio": "",
+                "image": "images/guide.gif"
+            }
+        }
+    },
+    "k93": {
+        "welcome": {
+            "audio": "",
+            "image": "images/guide.gif"
+        },
+        "scenes": {}
+    },
+    "k95": {
+        "welcome": {
+            "audio": "",
+            "image": "images/guide.gif"
+        },
+        "scenes": {
+            "k95_toancanh": {
+                "audio": "",
+                "image": "images/guide.gif"
+            }
+        }
+    },
+    "_ghi_chu": "Key cũ 'tuyen_quang' đã được đổi thành 'k91'. Thêm audio cho k93 và k95 khi có file audio."
+}

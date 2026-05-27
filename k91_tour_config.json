@@ -1,0 +1,144 @@
+{
+    "_ghi_chu_1": "Đây là khối cài đặt mặc định cho toàn bộ Tour K91",
+    "default": {
+        "firstScene": "k91_tt",
+        "author": "Bảo Tàng 360",
+        "sceneFadeDuration": 1000,
+        "autoLoad": true,
+        "hotSpotDebug": false,
+        "hfov": 120
+    },
+    "_ghi_chu_2": "Dưới đây là danh sách các phòng (Scenes) của K91",
+    "scenes": {
+        "k91_cong": {
+            "title": "Cổng Kho K91",
+            "panorama": "images/panorama/k91/cong.jpg",
+            "hotSpots": [
+               {
+                   "type": "scene",
+                   "pitch": -2.38,
+                   "sceneId": "k91_khuB",
+                   "yaw": 87.92,
+                   "cssClass": "pnlm-hotspot-arrow-up"
+                }
+            ]
+        },
+        "k91_khuB": {
+            "title": "Khu B - Kho K91",
+            "panorama": "images/panorama/k91/khuB.jpg",
+            "hotSpots": [
+               {
+                   "type": "scene",
+                   "pitch": -1.69,
+                   "yaw": -107.55,
+                   "sceneId": "k91_khoB1",
+                   "cssClass": "pnlm-hotspot-arrow-left"
+                },
+                {
+                    "type": "scene",
+                    "pitch": 1.58,
+                    "yaw": -91.16,
+                    "sceneId": "k91_khoB2",
+                    "cssClass": "pnlm-hotspot-arrow-up"
+                }
+            ]
+        },
+        "k91_tt": {
+            "title": "Trung Tâm Kho K91",
+            "panorama": "images/panorama/k91/tt.jpg",
+            "hotSpots": [
+                {
+                    "type": "scene",
+                    "pitch": -4.65,
+                    "yaw": 177.96,
+                    "sceneId": "k91_cong",
+                    "cssClass": "pnlm-hotspot-arrow-up"
+                },
+                {
+                    "type": "scene",
+                    "pitch": -3.03,
+                    "yaw": -47.36,
+                    "sceneId": "k91_khoA3",
+                    "cssClass": "pnlm-hotspot-arrow-up"
+                },
+                {
+                    "pitch": -7.05,
+                    "type": "scene",
+                    "yaw": 141.25,
+                    "sceneId": "k91_khoA1",
+                    "cssClass": "pnlm-hotspot-arrow-left"
+                }
+            ]
+        },
+        "k91_khoA1": {
+            "title": "Kho A1 - K91",
+            "panorama": "images/panorama/k91/khoA1.jpg",
+            "hotSpots": [
+                {
+                    "pitch": -2.67,
+                    "yaw": 0.6,
+                    "type": "scene",
+                    "sceneId": "k91_khoA2",
+                    "cssClass": "pnlm-hotspot-arrow-up"
+                },
+                {
+                    "type": "scene",
+                    "pitch": -6.44,
+                    "yaw": -175.62,
+                    "sceneId": "k91_tt",
+                    "cssClass": "pnlm-hotspot-arrow-up"
+                }
+            ]
+        },
+        "k91_khoA2": {
+            "title": "Kho A2 - K91",
+            "panorama": "images/panorama/k91/khoA2.jpg",
+            "hotSpots": [
+                {
+                    "type": "scene",
+                    "pitch": -6.44,
+                    "yaw": -175.62,
+                    "sceneId": "k91_khoA1",
+                    "cssClass": "pnlm-hotspot-arrow-up"
+                }
+            ]
+        },
+        "k91_khoA3": {
+            "title": "Kho A3 - K91",
+            "panorama": "images/panorama/k91/khoA3.jpg",
+            "hotSpots": [
+                {
+                    "type": "scene",
+                    "pitch": -5.89,
+                    "yaw": -95.43,
+                    "sceneId": "k91_tt",
+                    "cssClass": "pnlm-hotspot-arrow-up"
+                }
+            ]
+        },
+        "k91_khoB1": {
+            "title": "Kho B1 - K91",
+            "panorama": "images/panorama/k91/khoB1.jpg",
+            "hotSpots": [
+                {
+                    "type": "artifact",
+                    "pitch": -16.15,
+                    "yaw": -119.22,
+                    "artifactId": "T1-g1_naucdx"
+                },
+                {
+                    "type": "scene",
+                    "pitch": -12.08,
+                    "yaw": -56.81,
+                    "sceneId": "k91_khuB",
+                    "cssClass": "pnlm-hotspot-arrow-up"
+                }
+            ]
+        },
+        "k91_khoB2": {
+            "title": "Kho B2 - K91",
+            "panorama": "images/panorama/k91/khoB2.jpg",
+            "hotSpots": []
+        }
+    }
+}

@@ -1,0 +1,29 @@
+[
+    {
+        "id": "k91",
+        "name": "PHÂN KHO K91",
+        "subtitle": "Khu A & Khu B",
+        "description": "Phân kho chứa nhiên liệu chiến lược phục vụ cho các chiến dịch quân sự. Khám phá không gian lưu trữ hiện vật lịch sử độc đáo tại đây.",
+        "url": "tour.html",
+        "thumbnail": "images/k91_thumbnail.jpg",
+        "badge": "8 Phòng"
+    },
+    {
+        "id": "k93",
+        "name": "PHÂN KHO K93",
+        "subtitle": "Khu lưu trữ đặc biệt",
+        "description": "Khu phân kho với hệ thống bảo quản nhiên liệu hiện đại, ghi lại dấu ấn lịch sử hào hùng của ngành hậu cần quân sự Việt Nam.",
+        "url": "tour.html",
+        "thumbnail": "images/k93_thumbnail.jpg",
+        "badge": "Sắp ra mắt"
+    },
+    {
+        "id": "k95",
+        "name": "PHÂN KHO K95",
+        "subtitle": "Hệ thống hầm ngầm",
+        "description": "Hệ thống hầm ngầm bí mật phục vụ dự trữ và phân phối xăng dầu chiến lược trong thời kỳ kháng chiến chống Mỹ cứu nước.",
+        "url": "tour.html",
+        "thumbnail": "images/k95_thumbnail.jpg",
+        "badge": "1 Phòng"
+    }
+]
